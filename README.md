@@ -1,188 +1,133 @@
-# Carrito API – Spring Boot
+# Práctica 5 – Web de Boda + API REST
 
 ## Descripción
 
-Este proyecto implementa una **API REST para la gestión de carritos de compra** utilizando **Spring Boot, JPA y una base de datos relacional**.
-La API permite crear carritos, añadir artículos al carrito, consultar el carrito y eliminarlo.
+En esta práctica se ha desarrollado una aplicación completa que conecta un **frontend en HTML, CSS y JavaScript** con un **backend en Spring Boot**, utilizando una API REST.
 
-La persistencia se gestiona mediante **Spring Data JPA**, que genera automáticamente las tablas de la base de datos a partir de las entidades del proyecto.
+La web simula la página de una boda donde los usuarios pueden ver información del evento, una línea temporal con fotos y una lista de regalos con carrito de compra.
 
----
-
-# Arquitectura
-
-El proyecto sigue una arquitectura en capas:
-
-**Controller**
-
-* Expone los endpoints REST
-* Recibe las peticiones HTTP
-
-**Service**
-
-* Contiene la lógica de negocio
-* Gestiona validaciones y transacciones
-
-**Repository**
-
-* Acceso a base de datos
-* Usa Spring Data JPA
-
-**Entity**
-
-* Representación de las tablas de la base de datos
+El objetivo principal es aprender a consumir endpoints REST desde el frontend mediante `fetch` y manipular el DOM dinámicamente.
 
 ---
 
-# Entidades
+## Tecnologías utilizadas
 
-## Carrito
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
+- Fetch API
 
-Representa un carrito de compra.
-
-Campos:
-
-| Campo         | Tipo   | Descripción                     |
-| ------------- | ------ | ------------------------------- |
-| id            | Long   | Clave primaria generada         |
-| idCarrito     | String | Identificador único del carrito |
-| idUsuario     | String | Identificador del usuario       |
-| correoUsuario | String | Email del usuario               |
-| totalPrecio   | double | Precio total del carrito        |
+### Backend
+- Java
+- Spring Boot
+- JPA / Hibernate
+- Base de datos H2
 
 ---
 
-## LineaCarrito
+## Funcionalidades
 
-Representa un artículo dentro de un carrito.
+### Página principal
+- Información de la boda
+- Cuenta atrás en tiempo real
+- Línea temporal con imágenes (slider)
 
-Campos:
+### Lista de regalos
+- Productos con imagen, precio y descripción
+- Botón para añadir al carrito
 
-| Campo          | Tipo    | Descripción                       |
-| -------------- | ------- | --------------------------------- |
-| id             | Long    | Clave primaria                    |
-| carrito        | Carrito | Relación ManyToOne con el carrito |
-| idArticulo     | String  | Identificador del artículo        |
-| precioUnitario | double  | Precio por unidad                 |
-| numeroUnidades | int     | Cantidad del artículo             |
-| costeLinea     | double  | Coste total de la línea           |
+### Carrito
+- Visualización de productos desde el backend
+- Cálculo automático del total
+- Eliminación de productos
 
----
+### Checkout
+- Formulario con nombre y correo
+- Creación de pedido en backend
+- Vaciado del carrito
 
-# Endpoints
+### Aportación libre
+- Permite añadir dinero para la luna de miel
 
-## Crear carrito
+### Vista Admin
+- Endpoint protegido para ver pedidos
+- Uso de cabecera:
+  X-Admin-Key: clave-admin-2027
 
-POST /api/carritos
-
-Body ejemplo:
-
-```json
-{
-  "idCarrito": "C-001",
-  "idUsuario": "U-001",
-  "correoUsuario": "usuario@email.com"
-}
-```
-
-Respuesta:
-
-```
-201 CREATED
-```
 
 ---
 
-## Obtener carrito
+## API REST
 
-GET /api/carritos/{idCarrito}
+### Carrito
 
-Ejemplo:
-
-```
-GET /api/carritos/C-001
-```
-
----
-
-## Añadir artículo al carrito
-
-POST /api/carritos/{idCarrito}/lineas
-
-Body:
-
-```json
-{
-  "idArticulo": "A-100",
-  "precioUnitario": 25.0,
-  "numeroUnidades": 2
-}
-```
-
-Respuesta:
-
-```
-201 CREATED
-```
-
----
-
-## Eliminar carrito
-
+POST /api/carritos  
+GET /api/carritos/{idCarrito}  
+POST /api/carritos/{idCarrito}/lineas  
+GET /api/carritos/{idCarrito}/lineas  
+DELETE /api/carritos/{idCarrito}/lineas/{idArticulo}  
 DELETE /api/carritos/{idCarrito}
 
-Respuesta:
+### Pedidos
 
-```
-204 NO CONTENT
-```
-
----
-
-# Persistencia
-
-La persistencia se gestiona mediante **Spring Data JPA**.
-Las tablas se generan automáticamente a partir de las entidades del proyecto.
-
-Relación principal:
-
-```
-Carrito 1 ---- * LineaCarrito
-```
-
-Un carrito puede contener múltiples líneas de artículos.
+POST /api/pedidos/{idCarrito}  
+GET /api/admin/pedidos
 
 ---
 
-# Tecnologías utilizadas
+## Estructura
 
-* Java
-* Spring Boot
-* Spring Data JPA
-* H2 / Base de datos relacional
-* Maven
-* REST API
+Practica-5/
+├── Frontend/
+│   ├── index.html
+│   ├── gifts.html
+│   ├── cart.html
+│   ├── checkout.html
+│   ├── admin.html
+│   ├── script.js
+│   ├── styles.css
+│   └── assets/
+│
+├── src/
+│   ├── controlador/
+│   ├── servicio/
+│   ├── repositorio/
+│   └── entity/
+│
+├── pom.xml
+└── application.properties
 
 ---
 
-# Ejecución del proyecto
+## Cómo ejecutar
 
-1. Clonar el repositorio
-2. Ejecutar la aplicación Spring Boot
-3. Acceder a la API mediante herramientas como:
+### Backend
+mvn spring-boot:run
 
-* Postman
-* curl
-* navegador
 
-La API estará disponible en:
-
-```
+Acceso:
 http://localhost:8080
-```
+
+H2:
+http://localhost:8080/h2-console
 
 ---
 
-# Autor
+### Frontend
+Abrir con Live Server:
+http://127.0.0.1:3000/index.html
 
-Proyecto desarrollado como parte de la práctica de **Programación de Aplicaciones Telemáticas (PAT)**.
+---
+
+## Notas
+
+- El carrito se gestiona completamente desde el backend
+- El frontend usa `fetch` para comunicarse con la API
+- GitHub Pages solo sirve el frontend
+
+---
+
+## Autor
+
+Ana Recarte Pacheco
