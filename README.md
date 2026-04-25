@@ -77,27 +77,27 @@ GET /api/admin/pedidos
 ---
 
 ## Estructura
-
+```
 Practica-5/
 ├── Frontend/
-│   ├── index.html
-│   ├── gifts.html
-│   ├── cart.html
-│   ├── checkout.html
-│   ├── admin.html
-│   ├── script.js
-│   ├── styles.css
-│   └── assets/
+│ ├── index.html
+│ ├── gifts.html
+│ ├── cart.html
+│ ├── checkout.html
+│ ├── admin.html
+│ ├── script.js
+│ ├── styles.css
+│ └── assets/
 │
 ├── src/
-│   ├── controlador/
-│   ├── servicio/
-│   ├── repositorio/
-│   └── entity/
+│ ├── controlador/
+│ ├── servicio/
+│ ├── repositorio/
+│ └── entity/
 │
 ├── pom.xml
 └── application.properties
-
+```
 ---
 
 ## Cómo ejecutar
