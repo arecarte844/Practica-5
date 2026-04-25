@@ -19,6 +19,9 @@ public class ServicioCarrito {
     @Autowired
     RepoLineaCarrito repoLineaCarrito;
 
+    @Autowired
+    private ServicioPedido servicioPedido;
+
     //CREAR CARRITO
     public Carrito crea(Carrito carritoNuevo){
         if (repoCarrito.existsByIdCarrito(carritoNuevo.getIdCarrito())){

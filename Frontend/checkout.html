@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario de checkout para la boda.">
+  <title>Boda Dani & Eliza | Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a class="brand" href="index.html">Dani & Eliza</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="gifts.html">Lista de regalos</a>
+        <a href="cart.html">Carrito <span class="cart-badge" id="navCartCount">0</span></a>
+        <a class="active" href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container checkout-layout">
+      <section class="card">
+        <div class="section-heading left-align">
+          <p class="eyebrow">Formulario</p>
+          <h1>Checkout</h1>
+          <p>Es un formulario visual para la práctica, no procesa pagos reales.</p>
+        </div>
+
+        <form id="checkoutForm" class="checkout-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Nombre completo</label>
+              <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone" placeholder="600 000 000" required>
+            </div>
+            <div class="form-field">
+              <label for="guestMessage">Mensaje para la pareja</label>
+              <input type="text" id="guestMessage" name="guestMessage" placeholder="¡Enhorabuena!">
+            </div>
+            <div class="form-field">
+              <label for="cardName">Nombre en la tarjeta</label>
+              <input type="text" id="cardName" name="cardName" placeholder="Nombre Apellido" required>
+            </div>
+            <div class="form-field">
+              <label for="cardNumber">Número de tarjeta</label>
+              <input type="text" id="cardNumber" name="cardNumber" placeholder="1111 2222 3333 4444" required>
+            </div>
+            <div class="form-field">
+              <label for="expiry">Caducidad</label>
+              <input type="text" id="expiry" name="expiry" placeholder="MM/AA" required>
+            </div>
+            <div class="form-field">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" name="cvv" placeholder="123" required>
+            </div>
+          </div>
+
+          <fieldset class="payment-options">
+            <legend>Método de pago</legend>
+            <label><input type="radio" name="payment" value="card" checked> Tarjeta</label>
+            <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+            <label><input type="radio" name="payment" value="transfer"> Transferencia</label>
+          </fieldset>
+
+          <label class="checkbox-field">
+            <input type="checkbox" required>
+            Acepto que este formulario es solo una simulación académica.
+          </label>
+
+          <button class="button" type="submit">Finalizar pedido</button>
+          <p class="form-success hidden" id="checkoutSuccess">Pedido realizado correctamente. Gracias por tu aportación.</p>
+        </form>
+      </section>
+
+      <aside class="card summary-card">
+        <h2>Resumen del pedido</h2>
+        <div id="checkoutSummary"></div>
+        <p><strong>Total final:</strong> <span id="checkoutTotal">0 €</span></p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Formulario web con estilos consistentes.</p>
+      <p><a href="index.html">Volver al inicio</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

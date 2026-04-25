@@ -2,16 +2,23 @@ package edu.comillas.icai.gitt.pat.spring.Practica_5.controlador;
 
 import edu.comillas.icai.gitt.pat.spring.Practica_5.entity.Carrito;
 import edu.comillas.icai.gitt.pat.spring.Practica_5.entity.LineaCarrito;
+import edu.comillas.icai.gitt.pat.spring.Practica_5.entity.Pedido;
+import edu.comillas.icai.gitt.pat.spring.Practica_5.servicio.ServicioPedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import edu.comillas.icai.gitt.pat.spring.Practica_5.servicio.ServicioCarrito;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class ControladorCarrito {
     @Autowired
     private ServicioCarrito servicioCarrito;
+    @Autowired
+    private ServicioPedido servicioPedido;
 
     //Crear Carrito
     @PostMapping("/api/carritos")
@@ -54,4 +61,24 @@ public class ControladorCarrito {
     public void borrarLinea(@PathVariable String idCarrito, @PathVariable String idArticulo) {
         servicioCarrito.borrarLinea(idCarrito, idArticulo);
     }
+
+    public static class PedidoRequest {
+        public String nombreCliente;
+        public String correoCliente;
+    }
+    @GetMapping("/api/admin/pedidos")
+    public List<Pedido> listarPedidos(@RequestHeader("X-Admin-Key") String adminKey) {
+        if (!"clave-admin-2027".equals(adminKey)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No autorizado");
+        }
+
+        return servicioPedido.listarPedidos();
+    }
+
+    @PostMapping("/api/pedidos/{idCarrito}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pedido crearPedido(@PathVariable String idCarrito, @RequestBody PedidoRequest req) {
+        return servicioPedido.crearPedidoDesdeCarrito(idCarrito, req.nombreCliente, req.correoCliente);
+    }
+
 }

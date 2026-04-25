@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lista de regalos para la boda.">
+  <title>Boda Dani y Eliza | Lista de regalos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a class="brand" href="index.html">Dani y Eliza</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a class="active" href="gifts.html">Lista de regalos</a>
+        <a href="cart.html">Carrito <span class="cart-badge" id="navCartCount">0</span></a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Regalos</p>
+        <h1>Lista de regalos</h1>
+        <p>Esta página incluye regalos que nos harían ilusión recibir.</p>
+      </div>
+
+      <section class="gift-scroll" id="giftList" aria-label="Lista de regalos"></section>
+
+      <section class="honeymoon-box">
+        <div class="honeymoon-text">
+          <p class="eyebrow">Luna de miel</p>
+          <h2>Aporta la cantidad que quieras</h2>
+          <p>
+            Si prefieres, también puedes contribuir a nuestra luna de miel con la cantidad
+            que tú elijas.
+          </p>
+        </div>
+
+        <form class="honeymoon-form" id="honeymoonForm">
+          <label for="honeymoonAmount">Cantidad (€)</label>
+          <input
+            type="number"
+            id="honeymoonAmount"
+            name="honeymoonAmount"
+            min="1"
+            step="1"
+            placeholder="Ej: 150"
+            required
+          >
+          <button type="submit" class="btn btn-secondary">Añadir aportación</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Práctica de carrito de compra con almacenamiento local.</p>
+      <p><a href="cart.html">Ver carrito</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Web de práctica para la boda de Dani y Eliza - 23 de junio de 2027.">
+  <title>Boda Dani & Eliza | Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a class="brand" href="index.html">Dani & Eliza</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a class="active" href="index.html">Inicio</a>
+        <a href="gifts.html">Lista de regalos</a>
+        <a href="cart.html">Carrito <span class="cart-badge" id="navCartCount">0</span></a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">23 de junio de 2027</p>
+          <h1>Nos casamos en San Lorenzo de El Escorial</h1>
+          <p class="lead">
+            Esta web es una práctica de HTML y CSS inspirada en la boda de mi primo Dani. Incluye una historia
+            en fotos, localización, cuenta atrás y un pequeño carrito de regalos donde se utiliza scroll y tambien un tab de carrito y checkout.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#timeline">Ver historia</a>
+            <a class="button button-secondary" href="gifts.html">Ver regalos</a>
+          </div>
+        </div>
+
+        <article class="countdown-card card">
+          <h2>Cuenta atrás para la boda</h2>
+          <p>Falta muy poco para el gran día.</p>
+          <div class="countdown" id="countdown" aria-live="polite">
+            <div><span id="days">0</span><small>días</small></div>
+            <div><span id="hours">0</span><small>horas</small></div>
+            <div><span id="minutes">0</span><small>min</small></div>
+            <div><span id="seconds">0</span><small>seg</small></div>
+          </div>
+          <p class="small-text">Fecha objetivo: 23/06/2027</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-column">
+        <article class="card info-card">
+          <h2>Detalles del evento</h2>
+          <p>
+            La boda se celebrará en <strong>San Lorenzo de El Escorial</strong>, un lugar elegante y con mucho encanto.   
+          </p>
+          <table>
+            <caption>Información principal</caption>
+            <thead>
+              <tr>
+                <th>Dato</th>
+                <th>Información</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fecha</td>
+                <td>23 de junio de 2027</td>
+              </tr>
+              <tr>
+                <td>Lugar</td>
+                <td>San Lorenzo de El Escorial, Madrid</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card map-card">
+          <h2>Cómo llegar</h2>
+          <p>Pulsa en la tarjeta para abrir Google Maps con indicaciones hacia San Lorenzo de El Escorial.</p>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=San+Lorenzo+de+El+Escorial" target="_blank" rel="noopener noreferrer">
+            <div class="map-placeholder">
+              <span>📍</span>
+              <strong>Ver mapa e indicaciones</strong>
+              <small>Haz clic para abrir la ruta</small>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="timeline-section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Nuestra historia</p>
+      <h2>Línea temporal</h2>
+      <p>Un recorrido por algunos momentos especiales desde 2015 hasta 2026.</p>
+    </div>
+
+    <div class="timeline-slider">
+      <div class="timeline-card-wrapper">
+        <button class="timeline-arrow timeline-arrow-left" id="prevSlide" aria-label="Foto anterior">
+          &#10094;
+        </button>
+
+        <article class="timeline-card">
+          <img id="timelineImage" src="" alt="Foto de la línea temporal">
+          <div class="timeline-card-text">
+            <p class="timeline-year" id="timelineYear">2015</p>
+
+          </div>
+        </article>
+
+        <button class="timeline-arrow timeline-arrow-right" id="nextSlide" aria-label="Foto siguiente">
+          &#10095;
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="section">
+      <div class="container">
+        <article class="card quote-card">
+          <h2>Un pequeño adelanto</h2>
+          <p>
+            “Gracias por acompañarnos en esta etapa tan especial. Esta web irá creciendo con más detalles,
+            horarios y novedades conforme se acerque la fecha.”
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Práctica echa por Ana Recarte Pacheco.</p>
+      <p><a href="gifts.html">Ir a regalos</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
