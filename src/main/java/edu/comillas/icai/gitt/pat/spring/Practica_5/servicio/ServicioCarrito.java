@@ -84,8 +84,39 @@ public class ServicioCarrito {
     //Borra Carrito
     @Transactional
     public void borra(String idCarrito){
-        Carrito carrito = repoCarrito.findByIdCarrito(idCarrito).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito no encontrado"));
+        Carrito carrito = repoCarrito.findByIdCarrito(idCarrito)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito no encontrado"));
+
+        List<LineaCarrito> lineas = repoLineaCarrito.findByCarrito_Id(carrito.getId());
+        repoLineaCarrito.deleteAll(lineas);
 
         repoCarrito.delete(carrito);
     }
+    public List<LineaCarrito> listarLineas(String idCarrito) {
+        Carrito carrito = repoCarrito.findByIdCarrito(idCarrito)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito no encontrado"));
+
+        return repoLineaCarrito.findByCarrito_Id(carrito.getId());
+    }
+    @Transactional
+    public void borrarLinea(String idCarrito, String idArticulo) {
+        Carrito carrito = repoCarrito.findByIdCarrito(idCarrito)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito no encontrado"));
+
+        LineaCarrito linea = repoLineaCarrito.findByCarrito_IdAndIdArticulo(carrito.getId(), idArticulo)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Línea no encontrada"));
+
+        repoLineaCarrito.delete(linea);
+
+        List<LineaCarrito> lineasRestantes = repoLineaCarrito.findByCarrito_Id(carrito.getId());
+
+        double total = 0.0;
+        for (LineaCarrito l : lineasRestantes) {
+            total += l.getCosteLinea();
+        }
+
+        carrito.setTotalPrecio(total);
+        repoCarrito.save(carrito);
+    }
+
 }

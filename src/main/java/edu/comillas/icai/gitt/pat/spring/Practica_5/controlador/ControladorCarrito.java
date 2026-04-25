@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import edu.comillas.icai.gitt.pat.spring.Practica_5.servicio.ServicioCarrito;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 public class ControladorCarrito {
     @Autowired
@@ -42,5 +42,16 @@ public class ControladorCarrito {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void borra(@PathVariable String idCarrito) {
         servicioCarrito.borra(idCarrito);
+    }
+
+    @GetMapping("/api/carritos/{idCarrito}/lineas")
+    public java.util.List<LineaCarrito> listarLineas(@PathVariable String idCarrito) {
+        return servicioCarrito.listarLineas(idCarrito);
+    }
+
+    @DeleteMapping("/api/carritos/{idCarrito}/lineas/{idArticulo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void borrarLinea(@PathVariable String idCarrito, @PathVariable String idArticulo) {
+        servicioCarrito.borrarLinea(idCarrito, idArticulo);
     }
 }
